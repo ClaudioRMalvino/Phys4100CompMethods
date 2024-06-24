@@ -2,13 +2,6 @@ import numpy as np
 from scipy import constants
 import matplotlib.pyplot as plt
 
-eV = constants.eV  # conversion factor of 1.602176634×10^19 J
-V = 20*eV
-E = eV*np.linspace(0, 20, 1000)
-accuracy = 0.001*eV
-m = 9.1094E-31  # mass of electron in kg
-
-
 def y_1(x):
     """This function defines the function y1"""
 
@@ -118,17 +111,29 @@ def BinarySearchY1Y3(x1, x2, accuracy):
                 initialabsval = absval
     return(mid/eV)
 
-# code that plots the graph of y1, y2, and y3 with the doman in E. It is plotted in units of J.
 
+def plot_graph(x):
+    """ Function that plots the graph of y1, y2, and y3 with the doman in E. It is plotted in units of J.
+    """
+    
+    plt.plot(x,  y_1(x), label="$y_1$")
+    plt.plot(x, y_2(x), label="$y_2$")
+    plt.plot(x, y_3(x), label="$y_3$")
+    plt.xlabel("Energy, J")
+    plt.ylabel("Allowed Energies, J")
+    plt.ylim(-0.74E-17, 0.75E-17)
+    plt.legend()
+    plt.show()
 
-plt.plot(E,  y_1(E), label="$y_1$")
-plt.plot(E, y_2(E), label="$y_2$")
-plt.plot(E, y_3(E), label="$y_3$")
-plt.xlabel("Energy, J")
-plt.ylabel("Allowed Energies, J")
-plt.ylim(-0.74E-17, 0.75E-17)
-plt.legend()
-plt.show()
+# Initialization of initial conditions
+
+eV = constants.eV  # conversion factor of 1.602176634×10^19 J
+V = 20*eV
+E = eV*np.linspace(0, 20, 1000)
+accuracy = 0.001*eV
+m = 9.1094E-31  # mass of electron in kg
+
+plot_graph(E)
 
 print(f'The first six energy levels of the electron are:\n\
 \nE_0 = {BinarySearchY1Y3(0E-18,0.0E-18, accuracy)} eV\n\
