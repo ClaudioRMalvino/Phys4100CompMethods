@@ -70,7 +70,7 @@ imaginary = np.imag(psi)
 #holds the coefficients alpha and eta
 alpha = dst(real)
 eta = dst(imaginary)
-    
+     
 RPsi_vals = []
 
 t = 1.0e-16
